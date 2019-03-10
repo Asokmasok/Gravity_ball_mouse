@@ -2,17 +2,23 @@ class Ball {
   PVector location;
   PVector velocity;
   PVector acceleration;
-  Rectangle[] faces;
+
+
 
 
   Ball() {
-    location = new PVector(width/2, height/2);
+    location = new PVector(random(width/2), random(height/2));
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
   }
 
-  void update() {
-    PVector mouse = new PVector (faces.x, faces.y);
+  void update(float faceX, float faceY) {
+
+    PVector mouse = new PVector (faceX, faceY);
+    float diameter=20;
+    noStroke();
+    fill(0, 0, 0);
+    ellipse(faceX, faceY, diameter, diameter);
     mouse.sub(location);
     mouse.setMag(1);
     acceleration = mouse;
@@ -23,7 +29,8 @@ class Ball {
   }
 
   void display() {
+    float diameter = 20;
     fill(0, 255, 0);
-    ellipse(location.x, location.y, 20, 20);
+    ellipse(location.x, location.y, diameter, diameter);
   }
 }
